@@ -1,0 +1,24 @@
+{
+  "name": "nosql-social-network-api",
+  "version": "1.0.0",
+  "description": "Mongoose back-end project about Social Network API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijing-code/NoSQL-Social-Network-API.git"
+  },
+  "author": "Jing Li",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lijing-code/NoSQL-Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/lijing-code/NoSQL-Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.6"
+  }
+}
