@@ -25,6 +25,7 @@ thoughts: [
 
 // * `friends`
 //   * Array of `_id` values referencing the `User` model (self-reference)
+// activitiy populate 23
 friends: [
     {
         type: Schema.Types.ObjectId,
@@ -33,6 +34,7 @@ friends: [
 ]
 // **Schema Settings**:
 // Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
+// look at activity virtuals 21
 userSchema
     .virtual('friendCount')
     .get(function() {
