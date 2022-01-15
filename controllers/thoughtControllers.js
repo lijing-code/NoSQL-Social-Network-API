@@ -1,4 +1,4 @@
-const { User, Thought, Reaction} = require('../models');
+const { User, Thought } = require('../models');
 
 module.exports = {
     // getting all thougts
@@ -72,8 +72,16 @@ module.exports = {
               { username: thought.username},
               { $pull: { thoughts: req.params.thoughtId }},
               { runValidators: true, new: true }
-            )
+              )
         )
+
+        .then((user) =>
+          !user
+          ? user
+            .status(404)
+            .json({ message: 'Thought deleted, but no user found'})
+          : res.json({ message: 'Thought successfully deleted' })
+        )      
         .catch((err) => res.status(500).json(err));
     },
 

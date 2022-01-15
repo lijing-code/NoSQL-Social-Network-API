@@ -1,6 +1,5 @@
 const connection = require('../config/connection');
 const { Thought, User } = require('../models');
-const { getUsernames,getThoughts } = require('./data');
 
 connection.on('error', (err) => err);
 
@@ -14,23 +13,35 @@ connection.once('open', async () => {
   await Thought.deleteMany({});
 
   // Create empty array to hold the users and thoughts
-  const users = [];
-  const usernames = [];
-  const thoughts = [];
-  // add users to the users array
-  for (let i = 0; i < 3; i++) {
-    const username = getUsernames(i)
-    const email = `${username}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}@gmail.com`;
-    const thought = getThoughts(i);
-    thoughts.push({getThoughts(i)});
+  const users = [
+    {
+      username: 'lijingshier',
+      email: 'lijing900913@gmail.com',
+    },
+    {
+      username: 'jackielee',
+      email: 'jackielee@gmail.com',
+    },
+    {
+      username: 'fanwang',
+      email: 'fanwang86@gmail.com',
+    },
+  ]
 
-    users.push({
-      username,
-      email,
-      thought,
-    });
-    usernames.push(username);
-  }
+  const thoughts = [
+    {
+      text: 'This is awesome!',
+      username: 'lijingshier',
+    },
+    {
+      text: 'I love it!',
+      username: 'jackielee',
+    },
+    {
+      text: 'Could you tell us more about it?',
+      username: 'fanwang',
+    },
+  ]
 
   // Add users to the collection and await the results
   await User.collection.insertMany(users);

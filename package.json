@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon"
+    "watch": "nodemon",
+    "dev": "nodemon index",
+    "seed": "node utils/seed"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,8 @@
   "dependencies": {
     "express": "^4.17.2",
     "mongoose": "^6.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
   }
 }

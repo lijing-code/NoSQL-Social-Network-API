@@ -1,6 +1,28 @@
 // * `thoughtText`
 const { Schema, model, Types } = require('mongoose');
-const { reactionSchema } = require('./Reaction')
+
+const reactionSchema = new Schema(
+    {
+        reactionId: {
+              type: Schema.Types.ObjectId,
+              default: () => new Types.ObjectId(),
+            },
+        content: {
+            type: String,
+            maxlength: 280
+        },
+        username: {
+            type: String,
+            required: true
+        },
+    },
+    {
+        toJSON: {
+            getters: true,
+        },
+        id: false,
+    }
+)
 // Schema to create Thougth model
 const thoughtSchema = new Schema(
     {
@@ -18,8 +40,7 @@ const thoughtSchema = new Schema(
             default: Date.now,
         },
         username: {
-            type: Schema.Types.ObjectId,
-            ref: 'user',
+            type: String,
             required: true,
         },
         reactions: [reactionSchema],
