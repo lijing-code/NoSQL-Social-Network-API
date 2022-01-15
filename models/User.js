@@ -1,40 +1,47 @@
 // **User**:
+const { Schema, model } = require("mongoose");
 
-const { Schema } = require("mongoose");
-
-// * `username`
-//   * String
-//   * Unique
-//   * Required
-//   * Trimmed
-
-// * `email`
-//   * String
-//   * Required
-//   * Unique
-//   * Must match a valid email address (look into Mongoose's matching validation)
-
-// * `thoughts`- an array, need to populate all the thougths in userControllers
-//   * Array of `_id` values referencing the `Thought` model
-thoughts: [
+// Schema to create User model
+const userSchema = new Schema(
     {
-        type: Schema.Types.ObjectId,
-        ref: 'thought'
-    }
-]
-
-// * `friends`
-//   * Array of `_id` values referencing the `User` model (self-reference)
-// activitiy populate 23
-friends: [
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+            trim: true,
+        },
+        email:{
+            type: String,
+            trim: true,
+            unique: true,
+            required: true,
+            validate: [validateEmail, 'Please fill a valid gmail address'],
+            match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid gmail address']
+        },
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'thought'
+            }
+        ],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'user'
+            }
+        ],
+    },
     {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
+        toJSON: {
+            getters: true,
+            virtuals: true,
+        },
+        id: false,
     }
-]
+)
+
 // **Schema Settings**:
 // Create a virtual called `friendCount` that retrieves the length of the user's `friends` array field on query.
-// look at activity virtuals 21
 userSchema
     .virtual('friendCount')
     .get(function() {

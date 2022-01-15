@@ -1,24 +1,38 @@
 // * `thoughtText`
-//   * String
-//   * Required
-//   * Must be between 1 and 280 characters
-
-// * `createdAt`
-//   * Date
-//   * Set default value to the current timestamp
-//   * Use a getter method to format the timestamp on query
-
-// * `username` (The user that created this thought)
-//   * String
-//   * Required
-
-// * `reactions` (These are like replies)
-//   * Array of nested documents created with the `reactionSchema`
-// import reactionSchema, and link here, like activities 17
-reactions: [reactionSchema],
+const { Schema, model, Types } = require('mongoose');
+const { reactionSchema } = require('./Reaction')
+// Schema to create Thougth model
+const thoughtSchema = new Schema(
+    {
+        text:{
+            //   * String
+            type: String,
+            //   * Required
+            required: true,
+            //   * Must be between 1 and 280 characters
+            minLength: 1,
+            maxLength: 280,
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+        },
+        username: {
+            type: Schema.Types.ObjectId,
+            ref: 'user',
+            required: true,
+        },
+        reactions: [reactionSchema],
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
+    }
+)
 
 // **Schema Settings**:
-
 // Create a virtual called `reactionCount` that retrieves the length of the thought's `reactions` array field on query.
 thoughtSchema
     .virtual('reactionCount')
@@ -27,6 +41,6 @@ thoughtSchema
     });
 
 // Initialize our User model
-const Thoughts = model('thoughts', thoughtSchema);
+const Thought = model('thought', thoughtSchema);
 
-module.exports = Thoughts;
+module.exports = Thought;
