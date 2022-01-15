@@ -33,7 +33,8 @@
 <img width="1251" alt="Screen Shot 2022-01-15 at 12 20 53 AM" src="https://user-images.githubusercontent.com/68092036/149610250-88b257b1-46eb-4d4f-bdc7-2c73f3d506da.png">
 <img width="1354" alt="Screen Shot 2022-01-15 at 12 21 27 AM" src="https://user-images.githubusercontent.com/68092036/149610252-c9d2b22f-7c9c-4949-8ee1-27a246ce6a76.png">
 
-    Walkthrough Video:
+   * Walkthrough Video:
+    
     https://drive.google.com/file/d/1sCWPaRajK7wH5trE177v8xHTSc4JeTfC/view?usp=sharing
   
   ---
